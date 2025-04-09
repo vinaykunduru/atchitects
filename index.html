@@ -93,6 +93,22 @@
         color: #444;
         letter-spacing: 1px;
       }
+      .projecDetails {
+        display: flex;
+      }
+      .projectSection {
+        width: 350px;
+        height: 100%;
+        margin-right: 40px;
+        background-color: #f7f7f7;
+      }
+      .projectSection p {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+      .projectSection ul {
+        padding-right: 30px;
+      }
     </style>
   </head>
   <body>
@@ -164,6 +180,36 @@
                   <div class="projectHero">
                     <img class="heroImg" src="/images/2.jpg" />
                   </div>
+                  <div class="projectSection text">
+                    <p>
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500s, when an unknown
+                      printer took a galley of type and scrambled it to make a
+                      type specimen book. It has survived not only five
+                      centuries, but also the leap into electronic typesetting,
+                      remaining essentially unchanged. It was popularised in the
+                      1960s with the release of Letraset sheets containing Lorem
+                      Ipsum passages, and more recently with desktop publishing
+                      software like Aldus PageMaker including versions of Lorem
+                      Ipsum.
+                    </p>
+                  </div>
+                  <div class="projectSection image">
+                    <img src="1.webp" />
+                  </div>
+                  <div class="projectSection gallery"></div>
+                  <div class="projectSection team">
+                    <ul>
+                      <li>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      </li>
+                      <li>In et turpis ac mauris porta accumsan.</li>
+
+                      <li>Donec auctor velit non odio malesuada congue.</li>
+                    </ul>
+                  </div>
+                  <div class="projectSection map"></div>
                   <!--projecDetails-->
                 </div>
                 <!--projecDetails-->
@@ -394,10 +440,16 @@
     <script src="
     https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js
     "></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/Draggable.min.js"></script>
+
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/InertiaPlugin.min.js"></script>
+
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css"
     />
+
     <script>
       // ✅ Register ScrollTrigger
       gsap.registerPlugin(ScrollTrigger);
@@ -407,6 +459,9 @@
         el: document.querySelector(".scroll-container"),
         smooth: true,
       });
+
+      gsap.registerPlugin(Draggable, InertiaPlugin);
+      gsap.registerPlugin(InertiaPlugin);
 
       // ✅ Sync ScrollTrigger with Locomotive Scroll
       scroll.on("scroll", ScrollTrigger.update);
@@ -437,7 +492,7 @@
           scrollTrigger: {
             trigger: element,
             scroller: ".scroll-container", // 👈 important when using locomotive-scroll
-            start: "top 20%",
+            start: "top 30%",
             end: "bottom 20%",
             scrub: true,
           },
@@ -447,6 +502,30 @@
       // ✅ Refresh both
       ScrollTrigger.addEventListener("refresh", () => scroll.update());
       ScrollTrigger.refresh();
+      document.addEventListener("DOMContentLoaded", function () {
+        const target = document.querySelector(".projecDetails");
+        const bounds = document.querySelector(".projectItem");
+
+        if (target && bounds) {
+          Draggable.create(".projecDetails", {
+            type: "x",
+            bounds: ".projectItem",
+            lockAxis: true,
+            minimumMovement: 3,
+            force3D: true,
+            onThrowComplete: () => {
+              console.log("Drag complete");
+            },
+            throwProps: true,
+            edgeResistance: 0.5,
+            dragResistance: 0,
+            overshootTolerance: 0.1,
+            maxDuration: 0.5,
+          });
+        } else {
+          console.warn("Draggable target or bounds not found in DOM");
+        }
+      });
     </script>
   </body>
 </html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Simplified Shuffle Animation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+      }
+
+      .caseContainer {
+        overflow: hidden;
+        transition: transform 0.4s ease;
+      }
+
+      .case {
+        background: #f2f2f2;
+        margin: 10px 0;
+        padding: 20px;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+        min-height: 300px;
+      }
+
+      button {
+        margin-top: 20px;
+        padding: 10px 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Case List</h2>
+    <div class="caseContainer" id="caseContainer">
+      <div class="case">Case 1</div>
+      <div class="case">Case 2</div>
+      <div class="case">Case 3</div>
+      <div class="case">Case 4</div>
+    </div>
+
+    <button onclick="shuffleCases()">Shuffle</button>
+    <button onclick="resetCases()">Reset</button>
+
+    <script>
+      const caseContainer = document.getElementById("caseContainer");
+      const cases = document.querySelectorAll(".case");
+
+      let shuffleTime = 1;
+      let delay = 0.2;
+
+      function shuffleCases() {
+        // Move entire container up
+        gsap.to(caseContainer, {
+          y: -window.innerHeight * 2,
+          duration: shuffleTime,
+          ease: "power1.in",
+        });
+
+        // Animate each case individually
+        cases.forEach((item, index) => {
+          gsap.to(item, {
+            delay: delay,
+            opacity: 0,
+            y: -100,
+            duration: shuffleTime,
+            ease: "power1.in",
+          });
+        });
+
+        // Call function after animation
+        gsap.delayedCall(shuffleTime + delay + 0.1, shuffleIntoPlace);
+      }
+
+      function shuffleIntoPlace() {
+        console.log("Shuffling complete. Apply filters or sort here.");
+        // Example: reset position for demo
+        gsap.set(caseContainer, { y: 0 });
+        cases.forEach((item) => {
+          gsap.set(item, { y: 0, opacity: 1 });
+        });
+      }
+
+      function resetCases() {
+        console.log("Reset scale and scroll behavior");
+        gsap.killTweensOf(caseContainer);
+        gsap.killTweensOf(window);
+        gsap.set(caseContainer, { scale: 1, y: 0 });
+      }
+    </script>
+  </body>
+</html>

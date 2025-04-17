@@ -182,36 +182,7 @@
                   <div class="projectHero">
                     <img class="heroImg" src="/images/2.jpg" />
                   </div>
-                  <div class="projectSection text">
-                    <p>
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type and scrambled it to make a
-                      type specimen book. It has survived not only five
-                      centuries, but also the leap into electronic typesetting,
-                      remaining essentially unchanged. It was popularised in the
-                      1960s with the release of Letraset sheets containing Lorem
-                      Ipsum passages, and more recently with desktop publishing
-                      software like Aldus PageMaker including versions of Lorem
-                      Ipsum.
-                    </p>
-                  </div>
-                  <div class="projectSection image">
-                    <img src="1.webp" />
-                  </div>
-                  <div class="projectSection gallery"></div>
-                  <div class="projectSection team">
-                    <ul>
-                      <li>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      </li>
-                      <li>In et turpis ac mauris porta accumsan.</li>
 
-                      <li>Donec auctor velit non odio malesuada congue.</li>
-                    </ul>
-                  </div>
-                  <div class="projectSection map"></div>
                   <!--projecDetails-->
                 </div>
                 <!--projecDetails-->
@@ -489,6 +460,7 @@
 
       // ✅ Setup ScrollTrigger animations on scroll elements
       document.querySelectorAll(".projectItem").forEach((element) => {
+        /* Working */
         gsap.to(element, {
           scale: 0.9,
           scrollTrigger: {
@@ -499,6 +471,8 @@
             scrub: true,
           },
         });
+
+        /* Working End */
       });
 
       // ✅ Refresh both
@@ -529,14 +503,14 @@
         }
       });
 
-      // document.querySelectorAll(".projectItem").forEach((item) => {
-      //   item.addEventListener("click", function () {
-      //     const section = this.querySelector(".projectSection");
-      //     if (section) {
-      //       section.style.opacity = "1";
-      //     }
-      //   });
-      // });
+      document.querySelectorAll(".projectItem").forEach((item) => {
+        item.addEventListener("click", function () {
+          const section = this.querySelector(".projectSection");
+          if (section) {
+            section.style.opacity = "1";
+          }
+        });
+      });
     </script>
   </body>
 </html>

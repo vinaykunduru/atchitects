@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -1068,3 +1069,1075 @@ https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.
     </script>
   </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+      @font-face {
+        font-family: Helvetica;
+        src: url(/fonts/Helvetica.ttf);
+      }
+      @font-face {
+        font-family: "Helvetica-Bold";
+        src: url(/fonts/Helvetica-Bold.ttf);
+      }
+      @font-face {
+        font-family: "Helvetica-Light";
+        src: url(/fonts/helvetica-light.ttf);
+      }
+      body {
+        padding: 0;
+        margin: 0;
+        font-family: Helvetica;
+        font-size: 14px;
+      }
+      .projectsGrid {
+        width: 50%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        padding: 100px 0;
+        gap: 20px;
+      }
+      .projectItem {
+        display: flex;
+        gap: 0;
+        margin-bottom: 0;
+        margin-left: -150px;
+      }
+      .projectShortInfo {
+        width: 300px;
+        text-align: right;
+      }
+
+      .projectItem img {
+        height: auto;
+        width: 420px;
+      }
+      .projectItem .icon {
+        background-color: #ddd;
+        width: 40px;
+        height: 40px;
+        margin-left: auto;
+      }
+      .projectItem .icon img {
+        width: 100%;
+        height: auto;
+      }
+      .logo {
+        width: 50px;
+        height: auto;
+        padding: 5px 0;
+      }
+      .projectTitle {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        letter-spacing: 1px;
+      }
+      .location {
+        padding: 0;
+        margin: 5px 0 0 0;
+        color: #555;
+      }
+      .header {
+        position: fixed;
+        width: 100%;
+        background-color: #fff;
+        z-index: 999;
+      }
+      .headerContainer {
+        padding-left: 30px;
+        padding-right: 30px;
+        display: flex;
+        justify-content: space-between;
+        vertical-align: middle;
+      }
+      .topNav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 60px;
+      }
+      .topNav span {
+        align-items: center;
+        text-transform: uppercase;
+        font-family: "Helvetica";
+        color: #444;
+        letter-spacing: 1px;
+      }
+      .topNav span a {
+        color: #444;
+        text-decoration: none;
+      }
+      .projecDetails {
+        display: flex;
+        gap: 30px;
+      }
+      .projectSection {
+        width: 350px;
+        height: 100%;
+
+        background-color: #f7f7f7;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+      .projectSection img {
+        width: 100%;
+      }
+      .projectSection p {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+      .projectSection ul {
+        padding-right: 30px;
+      }
+      .projectShortInfo.inside {
+        opacity: 0;
+        display: none;
+      }
+
+      .projectItem.active .projectSection {
+        opacity: 1;
+        visibility: visible;
+        min-width: 350px;
+      }
+      .projectItem.active img {
+        width: 100%;
+        height: auto;
+      }
+
+      .projectItem.active .projectSection img {
+        height: 500px;
+        width: auto;
+      }
+
+      .css-mobile-menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .css-mobile-menu #menuToggle {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        padding-right: 1.5rem;
+        z-index: 9999;
+        -webkit-user-select: none;
+        user-select: none;
+        right: 0;
+        top: 35px;
+      }
+      .css-mobile-menu #menuToggle input {
+        display: flex;
+        width: 40px;
+        height: 32px;
+        position: absolute;
+        cursor: pointer;
+        opacity: 0;
+        z-index: 2;
+      }
+      .css-mobile-menu #menuToggle span {
+        display: flex;
+        width: 29px;
+        height: 2px;
+        margin-bottom: 5px;
+        position: relative;
+        background: #4a4a4a;
+        border-radius: 3px;
+        z-index: 1;
+        transform-origin: 5px 0px;
+        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+          background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+      }
+      .css-mobile-menu #menuToggle span:first-child {
+        transform-origin: 0% 0%;
+      }
+      .css-mobile-menu #menuToggle span:nth-last-child(2) {
+        transform-origin: 0% 100%;
+      }
+      .css-mobile-menu #menuToggle input:checked ~ span {
+        opacity: 1;
+        transform: rotate(45deg) translate(-3px, -1px);
+      }
+      .css-mobile-menu #menuToggle input:checked ~ span:nth-last-child(3) {
+        opacity: 0;
+        transform: rotate(0deg) scale(0.2, 0.2);
+      }
+      .css-mobile-menu #menuToggle input:checked ~ span:nth-last-child(2) {
+        transform: rotate(-45deg) translate(0, -1px);
+      }
+      #menu {
+        position: absolute;
+        width: auto;
+        min-width: 50px;
+        height: 100vh;
+        margin: -50px 0 0 -50px;
+        padding: 50px 30px 0 50px;
+        padding-top: 110px;
+        background-color: #fff;
+        -webkit-font-smoothing: antialiased;
+        transform-origin: 0% 0%;
+        transform: translateX(100%);
+        top: 0;
+        right: 0;
+        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+        list-style: none;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      }
+      #menu li {
+        padding: 10px 0;
+        transition-delay: 2s;
+        text-align: right;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      #menu li a {
+        color: #4a4a4a;
+        text-decoration: none;
+      }
+      .css-mobile-menu #menuToggle input:checked ~ ul {
+        transform: none;
+      }
+
+      @media all and (max-width: 576px) {
+        #menu {
+          width: 100vw;
+          height: 100vh;
+          padding-left: 0;
+          padding-right: 0;
+          text-align: center;
+        }
+        #menu li {
+          padding: 1rem 2rem;
+        }
+        .css-mobile-menu #menuToggle {
+          padding-right: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mainWrapper" style="position: relative">
+      <div class="header">
+        <div class="headerContainer">
+          <div class="logo">
+            <a href="#"><img src="/images/logo.svg" /></a>
+          </div>
+          <!-- Logo -->
+          <div class="topNav">
+            <span><a href="#">Architecture</a></span>
+            <span><a href="#">Landscape</a></span>
+            <span><a href="#">Products</a></span>
+            <!-- <span>Nav1</span>
+            <span>Nav1</span> -->
+          </div>
+          <!-- Top Nav -->
+          <div class="social"></div>
+          <!-- Social -->
+        </div>
+        <!-- Header Container-->
+      </div>
+      <!-- Main Nav-->
+      <nav class="css-mobile-menu" role="navigation">
+        <div id="menuToggle">
+          <input type="checkbox" />
+          <span></span>
+          <span></span>
+          <span></span>
+          <ul id="menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="contentWrapper">
+        <div class="container">
+          <div class="gridContainer scroll-container">
+            <div class="projectsGrid">
+              <div class="projectItem">
+                <div class="projecDetails">
+                  <div class="projectShortInfo">
+                    <div class="icon">
+                      <img
+                        class="mobileSVG"
+                        src="/images/ic1.svg"
+                        type="image/svg+xml"
+                      />
+                    </div>
+                    <div class="projectTitleInfo">
+                      <h3 class="projectTitle">Gelephu Mindfulness City</h3>
+                      <p class="location">GELEPHU, BHUTAN</p>
+                    </div>
+                  </div>
+                  <!-- projectShortInfo-->
+                  <div class="projectHero">
+                    <img class="heroImg" src="/images/1.jpg" />
+                  </div>
+                  <div class="projectSection text">
+                    <p>
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500s, when an unknown
+                      printer took a galley of type and scrambled it to make a
+                      type specimen book. It has survived not only five
+                      centuries,
+                    </p>
+                  </div>
+                  <div class="projectSection image">
+                    <img src="1.webp" />
+                  </div>
+                  <div class="projectSection gallery"></div>
+                  <div class="projectSection team">
+                    <ul>
+                      <li>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      </li>
+                      <li>In et turpis ac mauris porta accumsan.</li>
+
+                      <li>Donec auctor velit non odio malesuada congue.</li>
+                    </ul>
+                  </div>
+                  <div class="projectSection map"></div>
+                </div>
+                <!--projecDetails-->
+              </div>
+              <!-- Project-->
+
+              <div class="projectItem">
+                <div class="projecDetails">
+                  <div class="projectShortInfo">
+                    <div class="icon">
+                      <img
+                        class="mobileSVG"
+                        src="/images/ic1.svg"
+                        type="image/svg+xml"
+                      />
+                    </div>
+                    <div class="projectTitleInfo">
+                      <h3 class="projectTitle">Gelephu Mindfulness City</h3>
+                      <p class="location">GELEPHU, BHUTAN</p>
+                    </div>
+                  </div>
+                  <!-- projectShortInfo-->
+                  <div class="projectHero">
+                    <img class="heroImg" src="/images/2.jpg" />
+                  </div>
+                  <div class="projectSection text">
+                    <p>
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500s, when an unknown
+                      printer took a galley of type and scrambled it to make a
+                      type specimen book. It has survived not only five
+                      centuries,
+                    </p>
+                  </div>
+                  <div class="projectSection image">
+                    <img src="1.webp" />
+                  </div>
+                  <div class="projectSection gallery"></div>
+                  <div class="projectSection team">
+                    <ul>
+                      <li>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      </li>
+                      <li>In et turpis ac mauris porta accumsan.</li>
+
+                      <li>Donec auctor velit non odio malesuada congue.</li>
+                    </ul>
+                  </div>
+                  <div class="projectSection map"></div>
+                </div>
+                <!--projecDetails-->
+              </div>
+              <!-- Project-->
+
+              <div class="projectItem">
+                <div class="projecDetails">
+                  <div class="projectShortInfo">
+                    <div class="icon">
+                      <img
+                        class="mobileSVG"
+                        src="/images/ic1.svg"
+                        type="image/svg+xml"
+                      />
+                    </div>
+                    <div class="projectTitleInfo">
+                      <h3 class="projectTitle">Gelephu Mindfulness City</h3>
+                      <p class="location">GELEPHU, BHUTAN</p>
+                    </div>
+                  </div>
+                  <!-- projectShortInfo-->
+                  <div class="projectHero">
+                    <img class="heroImg" src="/images/3.jpg" />
+                  </div>
+                  <div class="projectSection text">
+                    <p>
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500s, when an unknown
+                      printer took a galley of type and scrambled it to make a
+                      type specimen book. It has survived not only five
+                      centuries,
+                    </p>
+                  </div>
+                  <div class="projectSection image">
+                    <img src="1.webp" />
+                  </div>
+                  <div class="projectSection gallery"></div>
+                  <div class="projectSection team">
+                    <ul>
+                      <li>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      </li>
+                      <li>In et turpis ac mauris porta accumsan.</li>
+
+                      <li>Donec auctor velit non odio malesuada congue.</li>
+                    </ul>
+                  </div>
+                  <div class="projectSection map"></div>
+                </div>
+                <!--projecDetails-->
+              </div>
+              <!-- Project-->
+
+              <div class="projectItem">
+                <div class="projecDetails">
+                  <div class="projectShortInfo">
+                    <div class="icon">
+                      <img
+                        class="mobileSVG"
+                        src="/images/ic1.svg"
+                        type="image/svg+xml"
+                      />
+                    </div>
+                    <div class="projectTitleInfo">
+                      <h3 class="projectTitle">Gelephu Mindfulness City</h3>
+                      <p class="location">GELEPHU, BHUTAN</p>
+                    </div>
+                  </div>
+                  <!-- projectShortInfo-->
+                  <div class="projectHero">
+                    <img class="heroImg" src="/images/4.jpg" />
+                  </div>
+                  <div class="projectSection text">
+                    <p>
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500s, when an unknown
+                      printer took a galley of type and scrambled it to make a
+                      type specimen book. It has survived not only five
+                      centuries,
+                    </p>
+                  </div>
+                  <div class="projectSection image">
+                    <img src="1.webp" />
+                  </div>
+                  <div class="projectSection gallery"></div>
+                  <div class="projectSection team">
+                    <ul>
+                      <li>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      </li>
+                      <li>In et turpis ac mauris porta accumsan.</li>
+
+                      <li>Donec auctor velit non odio malesuada congue.</li>
+                    </ul>
+                  </div>
+                  <div class="projectSection map"></div>
+                </div>
+                <!--projecDetails-->
+              </div>
+              <!-- Project-->
+
+              <div class="projectItem">
+                <div class="projecDetails">
+                  <div class="projectShortInfo">
+                    <div class="icon">
+                      <img
+                        class="mobileSVG"
+                        src="/images/ic1.svg"
+                        type="image/svg+xml"
+                      />
+                    </div>
+                    <div class="projectTitleInfo">
+                      <h3 class="projectTitle">Gelephu Mindfulness City</h3>
+                      <p class="location">GELEPHU, BHUTAN</p>
+                    </div>
+                  </div>
+                  <!-- projectShortInfo-->
+                  <div class="projectHero">
+                    <img class="heroImg" src="/images/5.jpg" />
+                  </div>
+                  <div class="projectSection text">
+                    <p>
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500s, when an unknown
+                      printer took a galley of type and scrambled it to make a
+                      type specimen book. It has survived not only five
+                      centuries,
+                    </p>
+                  </div>
+                  <div class="projectSection image">
+                    <img src="1.webp" />
+                  </div>
+                  <div class="projectSection gallery"></div>
+                  <div class="projectSection team">
+                    <ul>
+                      <li>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      </li>
+                      <li>In et turpis ac mauris porta accumsan.</li>
+
+                      <li>Donec auctor velit non odio malesuada congue.</li>
+                    </ul>
+                  </div>
+                  <div class="projectSection map"></div>
+                </div>
+                <!--projecDetails-->
+              </div>
+              <!-- Project-->
+
+              <div class="projectItem">
+                <div class="projecDetails">
+                  <div class="projectShortInfo">
+                    <div class="icon">
+                      <img
+                        class="mobileSVG"
+                        src="/images/ic1.svg"
+                        type="image/svg+xml"
+                      />
+                    </div>
+                    <div class="projectTitleInfo">
+                      <h3 class="projectTitle">Gelephu Mindfulness City</h3>
+                      <p class="location">GELEPHU, BHUTAN</p>
+                    </div>
+                  </div>
+                  <!-- projectShortInfo-->
+                  <div class="projectHero">
+                    <img class="heroImg" src="/images/6.jpg" />
+                  </div>
+                  <div class="projectSection text">
+                    <p>
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500s, when an unknown
+                      printer took a galley of type and scrambled it to make a
+                      type specimen book. It has survived not only five
+                      centuries,
+                    </p>
+                  </div>
+                  <div class="projectSection image">
+                    <img src="1.webp" />
+                  </div>
+                  <div class="projectSection gallery"></div>
+                  <div class="projectSection team">
+                    <ul>
+                      <li>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      </li>
+                      <li>In et turpis ac mauris porta accumsan.</li>
+
+                      <li>Donec auctor velit non odio malesuada congue.</li>
+                    </ul>
+                  </div>
+                  <div class="projectSection map"></div>
+                </div>
+                <!--projecDetails-->
+              </div>
+              <!-- Project-->
+
+              <div class="projectItem">
+                <div class="projecDetails">
+                  <div class="projectShortInfo">
+                    <div class="icon">
+                      <img
+                        class="mobileSVG"
+                        src="/images/ic1.svg"
+                        type="image/svg+xml"
+                      />
+                    </div>
+                    <div class="projectTitleInfo">
+                      <h3 class="projectTitle">Gelephu Mindfulness City</h3>
+                      <p class="location">GELEPHU, BHUTAN</p>
+                    </div>
+                  </div>
+                  <!-- projectShortInfo-->
+                  <div class="projectHero">
+                    <img class="heroImg" src="/images/7.jpg" />
+                  </div>
+                  <div class="projectSection text">
+                    <p>
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500s, when an unknown
+                      printer took a galley of type and scrambled it to make a
+                      type specimen book. It has survived not only five
+                      centuries,
+                    </p>
+                  </div>
+                  <div class="projectSection image">
+                    <img src="1.webp" />
+                  </div>
+                  <div class="projectSection gallery"></div>
+                  <div class="projectSection team">
+                    <ul>
+                      <li>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      </li>
+                      <li>In et turpis ac mauris porta accumsan.</li>
+
+                      <li>Donec auctor velit non odio malesuada congue.</li>
+                    </ul>
+                  </div>
+                  <div class="projectSection map"></div>
+                </div>
+                <!--projecDetails-->
+              </div>
+              <!-- Project-->
+
+              <div class="projectItem">
+                <div class="projecDetails">
+                  <div class="projectShortInfo">
+                    <div class="icon">
+                      <img
+                        class="mobileSVG"
+                        src="/images/ic1.svg"
+                        type="image/svg+xml"
+                      />
+                    </div>
+                    <div class="projectTitleInfo">
+                      <h3 class="projectTitle">Gelephu Mindfulness City</h3>
+                      <p class="location">GELEPHU, BHUTAN</p>
+                    </div>
+                  </div>
+                  <!-- projectShortInfo-->
+                  <div class="projectHero">
+                    <img class="heroImg" src="/images/8.jpg" />
+                  </div>
+                  <div class="projectSection text">
+                    <p>
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500s, when an unknown
+                      printer took a galley of type and scrambled it to make a
+                      type specimen book. It has survived not only five
+                      centuries,
+                    </p>
+                  </div>
+                  <div class="projectSection image">
+                    <img src="1.webp" />
+                  </div>
+                  <div class="projectSection gallery"></div>
+                  <div class="projectSection team">
+                    <ul>
+                      <li>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      </li>
+                      <li>In et turpis ac mauris porta accumsan.</li>
+
+                      <li>Donec auctor velit non odio malesuada congue.</li>
+                    </ul>
+                  </div>
+                  <div class="projectSection map"></div>
+                </div>
+                <!--projecDetails-->
+              </div>
+              <!-- Project-->
+
+              <div class="projectItem">
+                <div class="projecDetails">
+                  <div class="projectShortInfo">
+                    <div class="icon">
+                      <img
+                        class="mobileSVG"
+                        src="/images/ic1.svg"
+                        type="image/svg+xml"
+                      />
+                    </div>
+                    <div class="projectTitleInfo">
+                      <h3 class="projectTitle">Gelephu Mindfulness City</h3>
+                      <p class="location">GELEPHU, BHUTAN</p>
+                    </div>
+                  </div>
+                  <!-- projectShortInfo-->
+                  <div class="projectHero">
+                    <img class="heroImg" src="/images/9.jpg" />
+                  </div>
+                  <div class="projectSection text">
+                    <p>
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500s, when an unknown
+                      printer took a galley of type and scrambled it to make a
+                      type specimen book. It has survived not only five
+                      centuries,
+                    </p>
+                  </div>
+                  <div class="projectSection image">
+                    <img src="1.webp" />
+                  </div>
+                  <div class="projectSection gallery"></div>
+                  <div class="projectSection team">
+                    <ul>
+                      <li>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      </li>
+                      <li>In et turpis ac mauris porta accumsan.</li>
+
+                      <li>Donec auctor velit non odio malesuada congue.</li>
+                    </ul>
+                  </div>
+                  <div class="projectSection map"></div>
+                </div>
+                <!--projecDetails-->
+              </div>
+              <!-- Project-->
+
+              <div class="projectItem">
+                <div class="projecDetails">
+                  <div class="projectShortInfo">
+                    <div class="icon">
+                      <img
+                        class="mobileSVG"
+                        src="/images/ic1.svg"
+                        type="image/svg+xml"
+                      />
+                    </div>
+                    <div class="projectTitleInfo">
+                      <h3 class="projectTitle">Gelephu Mindfulness City</h3>
+                      <p class="location">GELEPHU, BHUTAN</p>
+                    </div>
+                  </div>
+                  <!-- projectShortInfo-->
+                  <div class="projectHero">
+                    <img class="heroImg" src="/images/10.jpg" />
+                  </div>
+                  <div class="projectSection text">
+                    <p>
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500s, when an unknown
+                      printer took a galley of type and scrambled it to make a
+                      type specimen book. It has survived not only five
+                      centuries,
+                    </p>
+                  </div>
+                  <div class="projectSection image">
+                    <img src="1.webp" />
+                  </div>
+                  <div class="projectSection gallery"></div>
+                  <div class="projectSection team">
+                    <ul>
+                      <li>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      </li>
+                      <li>In et turpis ac mauris porta accumsan.</li>
+
+                      <li>Donec auctor velit non odio malesuada congue.</li>
+                    </ul>
+                  </div>
+                  <div class="projectSection map"></div>
+                </div>
+                <!--projecDetails-->
+              </div>
+              <!-- Project-->
+            </div>
+            <!-- Projects Grid-->
+          </div>
+          <!-- Grid Container-->
+        </div>
+        <!-- Container-->
+      </div>
+      <!-- Content Wrapper-->
+    </div>
+    <!-- Main Wrapper-->
+
+    <style>
+      html,
+      body {
+        height: 100%;
+        /* overflow: hidden; */
+      }
+
+      #smooth-wrapper {
+        height: 100%;
+        /* overflow: hidden; */
+      }
+
+      #smooth-content {
+        will-change: transform;
+      }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="
+https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js
+"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/Draggable.min.js"></script>
+
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/InertiaPlugin.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css"
+    />
+
+    <script>
+      // ✅ Register ScrollTrigger
+      gsap.registerPlugin(ScrollTrigger);
+
+      // ✅ Initialize Locomotive Scroll
+      const scroll = new LocomotiveScroll({
+        el: document.querySelector(".scroll-container"),
+        smooth: true,
+      });
+
+      gsap.registerPlugin(Draggable, InertiaPlugin);
+      //   gsap.registerPlugin(InertiaPlugin);
+
+      // ✅ Sync ScrollTrigger with Locomotive Scroll
+      scroll.on("scroll", ScrollTrigger.update);
+
+      ScrollTrigger.scrollerProxy(".scroll-container", {
+        scrollTop(value) {
+          return arguments.length
+            ? scroll.scrollTo(value, 0, 0)
+            : scroll.scroll.instance.scroll.y;
+        },
+        getBoundingClientRect() {
+          return {
+            top: 0,
+            left: 0,
+            width: window.innerWidth,
+            height: window.innerHeight,
+          };
+        },
+        pinType: document.querySelector(".scroll-container").style.transform
+          ? "transform"
+          : "fixed",
+      });
+
+      // ✅ Setup ScrollTrigger animations on scroll elements
+      document.querySelectorAll(".projectItem").forEach((element) => {
+        gsap.to(element, {
+          scale: 0.9,
+          scrollTrigger: {
+            trigger: element,
+            scroller: ".scroll-container", // 👈 important when using locomotive-scroll
+            start: "top 30%",
+            end: "bottom 20%",
+            scrub: true,
+          },
+        });
+      });
+
+      // ✅ Refresh both
+      ScrollTrigger.addEventListener("refresh", () => scroll.update());
+      ScrollTrigger.refresh();
+      /*
+      document.addEventListener("DOMContentLoaded", function () {
+        const target = document.querySelector(".projecDetails");
+        const bounds = document.querySelector(".projectItem");
+
+        if (target && bounds) {
+          Draggable.create(".projecDetails", {
+            type: "x",
+            bounds: ".projectItem",
+            lockAxis: true,
+            minimumMovement: 3,
+            force3D: true,
+            onThrowComplete: () => {
+              console.log("Drag complete");
+            },
+            throwProps: true,
+            edgeResistance: 0.5,
+            dragResistance: 0,
+            overshootTolerance: 0.1,
+            maxDuration: 0.5,
+          });
+        } else {
+          console.warn("Draggable target or bounds not found in DOM");
+        }
+      });
+      */
+
+      let currentDraggable = null;
+      let currentDetails = null;
+
+      document.querySelectorAll(".projectItem").forEach((item) => {
+        item.addEventListener("click", function () {
+          // Deactivate other items
+          document.querySelectorAll(".projectItem").forEach((i) => {
+            if (i !== this) {
+              i.classList.remove("active");
+
+              // Animate previous .projecDetails back to x: 0
+              const oldDetails = i.querySelector(".projecDetails");
+              if (oldDetails) {
+                gsap.to(oldDetails, {
+                  x: 0,
+                  duration: 0.3,
+                  ease: "power2.out",
+                });
+              }
+            }
+          });
+
+          // Kill previous draggable
+          if (currentDraggable) {
+            currentDraggable.kill();
+            currentDraggable = null;
+          }
+
+          this.classList.add("active");
+
+          const details = this.querySelector(".projecDetails");
+          if (details) {
+            // Reset current details (in case it's the same one being reused)
+            gsap.set(details, { x: 0 });
+
+            currentDraggable = Draggable.create(details, {
+              type: "x",
+              bounds: this,
+              lockAxis: true,
+              minimumMovement: 3,
+              force3D: true,
+              throwProps: true,
+              edgeResistance: 0.5,
+              dragResistance: 0,
+              overshootTolerance: 0.1,
+              maxDuration: 0.5,
+              onThrowComplete: () => {
+                console.log("Drag complete");
+              },
+            })[0];
+
+            currentDetails = details;
+          }
+        });
+      });
+
+      /* document.querySelectorAll(".projectItem").forEach((item) => {
+    item.addEventListener("click", function () {
+      var section = this.querySelector(".projectSection");
+      if (section) {
+        section.style.opacity = "1";
+      }
+    });
+  });
+  */
+      var width = window.innerWidth;
+      var height = window.innerHeight;
+
+      document.querySelectorAll(".projectItem").forEach((item) => {
+        item.addEventListener("click", function () {
+          //alert(height);
+          // Optional: close others if only one should be open
+          document.querySelectorAll(".projectItem").forEach((i) => {
+            if (i !== this) {
+              i.classList.remove("active");
+            }
+          });
+
+          // Toggle active class on the clicked item
+          this.classList.add("active");
+        });
+      });
+
+      document.querySelectorAll(".projectItem").forEach((item) => {
+        item.addEventListener("click", function () {
+          // Remove 'active' class and reset width on all others
+          document.querySelectorAll(".projectItem").forEach((i) => {
+            if (i !== this) {
+              i.classList.remove("active");
+              gsap.to(i.querySelector(".projectHero"), {
+                width: "420px",
+                duration: 0.4,
+              });
+              i.querySelectorAll(".projectSection").forEach((section) => {
+                gsap.to(section, { width: "350px", duration: 0.4 });
+              });
+            }
+          });
+
+          // Scroll this item to vertical center
+          const itemRect = this.getBoundingClientRect();
+          const scrollOffset =
+            itemRect.top +
+            scroll.scroll.instance.scroll.y -
+            (window.innerHeight / 2 - itemRect.height / 2);
+
+          scroll.scrollTo(scrollOffset, {
+            duration: 800,
+            offset: 0,
+          });
+
+          // Enlarge only this item's sections
+          this.classList.add("active");
+
+          gsap.to(this.querySelector(".projectHero"), {
+            width: "50vw",
+            duration: 0.5,
+            ease: "power2.out",
+          });
+
+          this.querySelectorAll(".projectSection").forEach((section) => {
+            gsap.to(section, {
+              width: "450px",
+              duration: 0.5,
+              ease: "power2.out",
+            });
+          });
+        });
+      });
+
+      /*
+
+      document.querySelectorAll(".projectItem").forEach((item) => {
+        item.addEventListener("click", function () {
+          // Remove 'active' from others
+          document.querySelectorAll(".projectItem").forEach((i) => {
+            if (i !== this) {
+              i.classList.remove("active");
+              gsap.to(i, {
+                scale: 1,
+                duration: 0.5,
+              });
+            }
+          });
+
+          // Scroll to center
+          const itemRect = this.getBoundingClientRect();
+          const scrollOffset =
+            itemRect.top +
+            scroll.scroll.instance.scroll.y -
+            (window.innerHeight / 2 - itemRect.height / 2);
+          scroll.scrollTo(scrollOffset, {
+            duration: 800,
+            offset: 0,
+          });
+
+          // Enlarge clicked item
+          this.classList.add("active");
+          gsap.to(this, {
+            scale: 1.2,
+            duration: 0.5,
+            ease: "power2.out",
+          });
+        });
+      });
+      */
+    </script>
+  </body>
+</html>
+>>>>>>> 0267519ae5baa7ee1447d323791143d07c3f21d8

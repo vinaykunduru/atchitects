@@ -2329,6 +2329,54 @@ https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.
       });
     </script>
 
+    <script>
+      let lastScroll = 0;
+      let ticking = false;
+      let lastVelocity = 0;
+
+      const scrollEl = document.querySelector(".scroll-container");
+
+      const items = document.querySelectorAll(".projectItem");
+
+      const handleVelocityEffect = () => {
+        const currentScroll = scroll.scroll.instance.scroll.y;
+        const velocity = currentScroll - lastScroll;
+
+        // Apply effect based on scroll speed
+        items.forEach((item) => {
+          const absVelocity = Math.abs(velocity);
+          const scaleDown = Math.min(1, 1 - absVelocity / 2000); // adjust strength
+          const clampedScale = Math.max(0.94, scaleDown); // clamp scale
+
+          gsap.to(item, {
+            scale: clampedScale,
+            duration: 0.2,
+            ease: "power1.out",
+          });
+
+          // spring back
+          clearTimeout(item._springTimeout);
+          item._springTimeout = setTimeout(() => {
+            gsap.to(item, {
+              scale: 1,
+              duration: 0.6,
+              ease: "elastic.out(1, 0.4)",
+            });
+          }, 100); // delay bounce-back
+        });
+
+        lastScroll = currentScroll;
+        ticking = false;
+      };
+
+      scroll.on("scroll", () => {
+        if (!ticking) {
+          window.requestAnimationFrame(handleVelocityEffect);
+          ticking = true;
+        }
+      });
+    </script>
+
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"

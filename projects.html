@@ -1007,7 +1007,7 @@
                           </p>
                         </li>
 
-                        <li class="ss-carousel__item imgBlock">
+                        <!-- <li class="ss-carousel__item imgBlock">
                           <img
                             class="ss-carousel__item__image"
                             src="/projects/amyra/12.jpg"
@@ -1034,7 +1034,7 @@
                             src="/projects/amyra/15.jpg"
                             alt=""
                           />
-                        </li>
+                        </li> -->
                         <li class="ss-carousel__item textBlock">
                           <h3>Functionality</h3>
                           <p>
@@ -1073,17 +1073,44 @@
                         </li>
                         <li class="ss-carousel__item teamBlock">
                           <h3>Team</h3>
-                          <h5>Design & Planning</h5>
-                          <p>Pranay</p>
+                          <div class="teamlist">
+                            <div>
+                              <h5>Project Leader</h5>
+                              <p>Madhu sudhan rao Pulipati</p>
 
-                          <h5 class="subHead2">Structural Engineering</h5>
-                          <p>Yantrik Vidyut Jal Vibhag</p>
-                          <p>Sthal Nirikshan</p>
-                          <p>Anumati Samanvay</p>
-                          <h5 class="subHead2">3D Visualization & BIM Team</h5>
-                          <p>Drishtikone Vibhag</p>
-                          <p>Antarang Shilp</p>
-                          <p>Yojana Niyantran</p>
+                              <h5 class="subHead2">
+                                Project Architect, Concept
+                              </h5>
+                              <p>Pranay Mithilesh Pulipati</p>
+                              <p>Medha Pulipati</p>
+
+                              <h5 class="subHead2">Project Team</h5>
+                              <p>Ravi Kumar K</p>
+                              <p>Abdul</p>
+                              <p>Pavan P NSK</p>
+                              <p>Vaishnavi Basireddy</p>
+                              <p>Krishna Kanth P</p>
+                              <p>Rajib roy</p>
+                              <p>Keshav G</p>
+                              <p>Shamsheer p</p>
+                              <p>Chandan Halder</p>
+                              <p>Somisetty Baby Sushma</p>
+                            </div>
+                            <div>
+                              <h5>Project Manager</h5>
+                              <p>Rakesh CH</p>
+                              <h5 class="subHead2">Project Incharge</h5>
+                              <p>Sai</p>
+                              <h5 class="subHead2">Operational manager</h5>
+                              <p>Fathima</p>
+                              <h5 class="subHead2">Site supervisor</h5>
+                              <p>Ameer khan</p>
+                              <h5 class="subHead2">Photograghy</h5>
+                              <p>Victor</p>
+                              <h5 class="subHead2">Content</h5>
+                              <p>Ananth</p>
+                            </div>
+                          </div>
                         </li>
                       </ul>
                     </div>
@@ -2252,7 +2279,13 @@
         line-height: 22px;
       }
       .ss-carousel .ss-carousel__item.teamBlock {
-        min-width: 20vw;
+        min-width: 40vw;
+      }
+      .ss-carousel .ss-carousel__item.teamBlock .teamlist {
+        display: flex;
+      }
+      .ss-carousel .ss-carousel__item.teamBlock .teamlist div {
+        width: 50%;
       }
       .ss-carousel .ss-carousel__item.teamBlock p {
         padding: 0 0 10px 0;

@@ -863,7 +863,7 @@
                           />
                         </li>
 
-                        <li class="ss-carousel__item imgBlock">
+                        <li class="ss-carousel__item imgBlock vertical">
                           <img
                             class="ss-carousel__item__image"
                             src="/projects/amyra/12-1.jpg"
@@ -2197,6 +2197,16 @@
       }
       .ss-carousel .ss-carousel__item.imgBlock {
         min-width: 75vw;
+      }
+
+      .ss-carousel .ss-carousel__item.imgBlock.vertical {
+        min-width: 40vw;
+        text-align: center;
+        background-color: #f7f7f7;
+      }
+      .ss-carousel .ss-carousel__item.imgBlock.vertical img {
+        height: 100% !important;
+        width: auto !important;
       }
       .ss-carousel .ss-carousel__item.vCenter {
         align-self: center;

@@ -88,7 +88,7 @@
         transition: all 0.5;
       }
       .projectItem.active {
-        margin-bottom: 30px;
+        margin-bottom: 60px;
       }
       .projectItem.active .detailContainer {
         visibility: visible;
@@ -1071,14 +1071,22 @@
                             brand, making it prominent.
                           </p>
                         </li>
-                        <li class="ss-carousel__item teamBlock">
+                        <li class="ss-carousel__item teamBlock threeGrid">
                           <h3>Team</h3>
                           <div class="teamlist">
                             <div>
                               <h5>Project Leader</h5>
                               <p>Madhu sudhan rao Pulipati</p>
-
-                              <h5 class="subHead2">Project Team</h5>
+                              <h5 class="subHead2">
+                                Project Architect, Concept
+                              </h5>
+                              <p>Pranay Mithilesh Pulipati</p>
+                              <p>Medha Pulipati</p>
+                              <h5 class="subHead2">Project Manager</h5>
+                              <p>Rakesh CH</p>
+                            </div>
+                            <div>
+                              <h5>Project Team</h5>
                               <p>Ravi Kumar K</p>
                               <p>Abdul</p>
                               <p>Pavan P NSK</p>
@@ -1091,11 +1099,6 @@
                               <p>Somisetty Baby Sushma</p>
                             </div>
                             <div>
-                              <h5>Project Architect, Concept</h5>
-                              <p>Pranay Mithilesh Pulipati</p>
-                              <p>Medha Pulipati</p>
-                              <h5 class="subHead2">Project Manager</h5>
-                              <p>Rakesh CH</p>
                               <h5 class="subHead2">Project Incharge</h5>
                               <p>Sai</p>
                               <h5 class="subHead2">Operational manager</h5>
@@ -2261,7 +2264,8 @@
         /* background-image: url(/images/loader.gif); */
         background-position: center;
         background-repeat: no-repeat;
-        align-items: center;
+        text-align: center;
+        background-color: #f7f7f7;
       }
 
       .ss-carousel .ss-carousel__item.videoBlock.verticalVideo video {
@@ -2278,6 +2282,13 @@
       .ss-carousel .ss-carousel__item.teamBlock {
         min-width: 40vw;
       }
+      .ss-carousel .ss-carousel__item.teamBlock.threeGrid {
+        min-width: 50vw;
+      }
+
+      .ss-carousel .ss-carousel__item.teamBlock.threeGrid .teamlist div {
+        width: 33.3%;
+      }
       .ss-carousel .ss-carousel__item.teamBlock .teamlist {
         display: flex;
       }
@@ -2289,15 +2300,20 @@
         margin: 0;
       }
       .ss-carousel .ss-carousel__item.mapBlock {
-        min-width: 50vw;
+        min-width: 35vw;
       }
+      .ss-carousel .ss-carousel__item.mapBlock iframe {
+        width: 100%;
+        height: 90%;
+      }
+
       .ss-carousel .ss-carousel__item.mapBlock #map {
         height: 100vh;
         width: 100%;
       }
       .ss-carousel .ss-carousel__item.teamBlock h5 {
         font-size: 14px;
-        margin-top: 20px !important;
+
         margin: 0 0 10px 0;
         text-transform: uppercase;
       }
@@ -2627,12 +2643,12 @@ https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.
           // Add active class and resize clicked item
           this.classList.add("active");
           this.style.width = `${window.innerWidth - 30}px`;
-          this.style.height = `${window.innerHeight - 100}px`;
+          this.style.height = `${window.innerHeight - 140}px`;
 
           document
             .querySelectorAll(".ss-carousel .ss-carousel__item")
             .forEach(
-              (el) => (el.style.height = window.innerHeight - 120 + "px")
+              (el) => (el.style.height = window.innerHeight - 140 + "px")
             );
 
           // ✅ Scroll to vertically center this item with velocity-style timing

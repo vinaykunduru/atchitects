@@ -11,6 +11,13 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
     <style>
       @font-face {
         font-family: Helvetica;
@@ -28,7 +35,19 @@
         padding: 0;
         margin: 0;
         font-family: Helvetica;
+        font-family: "Poppins", sans-serif;
         font-size: 14px;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Karla", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 700;
+        font-style: normal;
       }
       .projectsGrid {
         /* width: 50%; */
@@ -66,9 +85,12 @@
         display: block;
       }
       .logo {
-        width: 50px;
+        width: 70px;
         height: auto;
         padding: 5px 0;
+      }
+      .logo img {
+        width: 100%;
       }
       .projectTitle {
         margin-bottom: 0;
@@ -296,7 +318,7 @@
       <div class="header">
         <div class="headerContainer">
           <div class="logo">
-            <a href="#"><img src="/images/logo.svg" /></a>
+            <a href="#"><img src="/images/logo.png" /></a>
           </div>
           <!-- Logo -->
           <div class="topNav">
@@ -908,8 +930,7 @@
                           <h3>Team</h3>
                           <h5>Design & Planning</h5>
                           <p>Pranay</p>
-                          <p></p>
-                          <p></p>
+
                           <h5 class="subHead2">Structural Engineering</h5>
                           <p>Yantrik Vidyut Jal Vibhag</p>
                           <p>Sthal Nirikshan</p>
@@ -2005,6 +2026,8 @@
       }
       .ss-carousel .ss-carousel__item.imgBlock {
         min-width: 70vw;
+        align-self: center;
+        align-items: center;
       }
       .firstInfo {
         min-width: 20vw;
@@ -2070,15 +2093,19 @@
         min-width: 20vw;
       }
       .ss-carousel .ss-carousel__item.teamBlock p {
-        padding-bottom: 5px;
+        padding: 0 0 10px 0;
+        margin: 0;
       }
       .ss-carousel .ss-carousel__item.teamBlock h5 {
-        font-size: 16px;
-        margin-top: 20px;
+        font-size: 14px;
+        margin-top: 20px !important;
+        margin: 0 0 10px 0;
+        text-transform: uppercase;
       }
       .subHead2 {
-        font-size: 16px;
+        font-size: 14px;
         margin-top: 20px;
+        margin-top: 20px !important;
       }
       .ss-carousel .ss-carousel__item a {
         display: flex;
@@ -2118,7 +2145,7 @@
         box-shadow: none;
         border: 0;
         z-index: 999;
-        width: 25vw;
+        width: 15vw;
         cursor: move;
         position: absolute;
         height: 100%;
@@ -2133,6 +2160,9 @@
       .ss-carousel .ss-carousel__arrow.arrow-next {
         right: 0;
         cursor: url("/images/next.png"), auto;
+      }
+
+      .ss-carousel .ss-carousel__arrow.arrow-next.disabled {
       }
       /* .ss-carousel .ss-carousel__arrow:before {
         content: "";

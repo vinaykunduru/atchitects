@@ -88,7 +88,7 @@
         transition: all 0.5;
       }
       .projectItem.active {
-        margin-bottom: 30px;
+        margin-bottom: 60px;
       }
       .projectItem.active .detailContainer {
         visibility: visible;
@@ -1007,7 +1007,7 @@
                           </p>
                         </li>
 
-                        <li class="ss-carousel__item imgBlock">
+                        <!-- <li class="ss-carousel__item imgBlock">
                           <img
                             class="ss-carousel__item__image"
                             src="/projects/amyra/12.jpg"
@@ -1034,7 +1034,7 @@
                             src="/projects/amyra/15.jpg"
                             alt=""
                           />
-                        </li>
+                        </li> -->
                         <li class="ss-carousel__item textBlock">
                           <h3>Functionality</h3>
                           <p>
@@ -1071,19 +1071,46 @@
                             brand, making it prominent.
                           </p>
                         </li>
-                        <li class="ss-carousel__item teamBlock">
+                        <li class="ss-carousel__item teamBlock threeGrid">
                           <h3>Team</h3>
-                          <h5>Design & Planning</h5>
-                          <p>Pranay</p>
-
-                          <h5 class="subHead2">Structural Engineering</h5>
-                          <p>Yantrik Vidyut Jal Vibhag</p>
-                          <p>Sthal Nirikshan</p>
-                          <p>Anumati Samanvay</p>
-                          <h5 class="subHead2">3D Visualization & BIM Team</h5>
-                          <p>Drishtikone Vibhag</p>
-                          <p>Antarang Shilp</p>
-                          <p>Yojana Niyantran</p>
+                          <div class="teamlist">
+                            <div>
+                              <h5>Project Leader</h5>
+                              <p>Madhu sudhan rao Pulipati</p>
+                              <h5 class="subHead2">
+                                Project Architect, Concept
+                              </h5>
+                              <p>Pranay Mithilesh Pulipati</p>
+                              <p>Medha Pulipati</p>
+                              <h5 class="subHead2">Project Manager</h5>
+                              <p>Rakesh CH</p>
+                            </div>
+                            <div>
+                              <h5>Project Team</h5>
+                              <p>Ravi Kumar K</p>
+                              <p>Abdul</p>
+                              <p>Pavan P NSK</p>
+                              <p>Vaishnavi Basireddy</p>
+                              <p>Krishna Kanth P</p>
+                              <p>Rajib roy</p>
+                              <p>Keshav G</p>
+                              <p>Shamsheer p</p>
+                              <p>Chandan Halder</p>
+                              <p>Somisetty Baby Sushma</p>
+                            </div>
+                            <div>
+                              <h5 class="subHead2">Project Incharge</h5>
+                              <p>Sai</p>
+                              <h5 class="subHead2">Operational manager</h5>
+                              <p>Fathima</p>
+                              <h5 class="subHead2">Site supervisor</h5>
+                              <p>Ameer khan</p>
+                              <h5 class="subHead2">Photograghy</h5>
+                              <p>Victor</p>
+                              <h5 class="subHead2">Content</h5>
+                              <p>Ananth</p>
+                            </div>
+                          </div>
                         </li>
                       </ul>
                     </div>
@@ -2237,7 +2264,8 @@
         /* background-image: url(/images/loader.gif); */
         background-position: center;
         background-repeat: no-repeat;
-        align-items: center;
+        text-align: center;
+        background-color: #f7f7f7;
       }
 
       .ss-carousel .ss-carousel__item.videoBlock.verticalVideo video {
@@ -2252,22 +2280,40 @@
         line-height: 22px;
       }
       .ss-carousel .ss-carousel__item.teamBlock {
-        min-width: 20vw;
+        min-width: 40vw;
+      }
+      .ss-carousel .ss-carousel__item.teamBlock.threeGrid {
+        min-width: 50vw;
+      }
+
+      .ss-carousel .ss-carousel__item.teamBlock.threeGrid .teamlist div {
+        width: 33.3%;
+      }
+      .ss-carousel .ss-carousel__item.teamBlock .teamlist {
+        display: flex;
+      }
+      .ss-carousel .ss-carousel__item.teamBlock .teamlist div {
+        width: 50%;
       }
       .ss-carousel .ss-carousel__item.teamBlock p {
         padding: 0 0 10px 0;
         margin: 0;
       }
       .ss-carousel .ss-carousel__item.mapBlock {
-        min-width: 50vw;
+        min-width: 35vw;
       }
+      .ss-carousel .ss-carousel__item.mapBlock iframe {
+        width: 100%;
+        height: 90%;
+      }
+
       .ss-carousel .ss-carousel__item.mapBlock #map {
         height: 100vh;
         width: 100%;
       }
       .ss-carousel .ss-carousel__item.teamBlock h5 {
         font-size: 14px;
-        margin-top: 20px !important;
+
         margin: 0 0 10px 0;
         text-transform: uppercase;
       }
@@ -2597,12 +2643,12 @@ https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.
           // Add active class and resize clicked item
           this.classList.add("active");
           this.style.width = `${window.innerWidth - 30}px`;
-          this.style.height = `${window.innerHeight - 100}px`;
+          this.style.height = `${window.innerHeight - 140}px`;
 
           document
             .querySelectorAll(".ss-carousel .ss-carousel__item")
             .forEach(
-              (el) => (el.style.height = window.innerHeight - 120 + "px")
+              (el) => (el.style.height = window.innerHeight - 140 + "px")
             );
 
           // ✅ Scroll to vertically center this item with velocity-style timing

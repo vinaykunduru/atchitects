@@ -740,10 +740,10 @@
                             alt=""
                           />
                         </li>
-                        <li class="ss-carousel__item videoBlock verticalVideo">
+                        <li class="ss-carousel__item videoBlock">
                           <video muted="" autoplay="" loop="">
                             <source
-                              src="/projects/amyra/Amyra Full Vedio.mp4"
+                              src="/projects/amyra/Amrya Full Video.mp4"
                               type="video/mp4"
                               poster="/images/blank.png"
                             />
@@ -884,8 +884,8 @@
                         </li>
 
                         <li class="ss-carousel__item mapBlock">
-                          <!-- <div id="map"></div> -->
-                          <iframe
+                          <div id="map"></div>
+                          <!-- <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.417072362901!2d80.65936527491395!3d16.50502878423935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35fb2cb9168e3d%3A0x15335ac5718bc32d!2sAmyra%20Silver!5e0!3m2!1sen!2sin!4v1745307043961!5m2!1sen!2sin&gestureHandling=none"
                             width="600"
                             height="450"
@@ -893,7 +893,7 @@
                             allowfullscreen=""
                             loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"
-                          ></iframe>
+                          ></iframe> -->
                         </li>
 
                         <!-- <li class="ss-carousel__item slideBlock">
@@ -1375,16 +1375,17 @@
                           />
                         </li>
 
+                        <li class="ss-carousel__item imgBlock vertical">
+                          <img
+                            class="ss-carousel__item__image"
+                            src="/projects/ladia/11.jpg"
+                            alt=""
+                          />
+                        </li>
+
                         <li class="ss-carousel__item slideBlock">
                           <div class="swiper mySwiper">
                             <div class="swiper-wrapper">
-                              <div class="swiper-slide">
-                                <img
-                                  class="ss-carousel__item__image"
-                                  src="/projects/ladia/11.jpg"
-                                  alt=""
-                                />
-                              </div>
                               <div class="swiper-slide">
                                 <img
                                   class="ss-carousel__item__image"
@@ -2777,6 +2778,8 @@
       .ss-carousel .ss-carousel__item.mapBlock #map {
         height: 100vh;
         width: 100%;
+        min-width: 500px;
+        min-height: 500px;
       }
       .ss-carousel .ss-carousel__item.teamBlock h5 {
         font-size: 14px;
@@ -3240,23 +3243,24 @@ https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.
       });
     </script>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-      // Initialize map
-      const map = L.map("map").setView([16.5050288, 80.6619402], 17);
+      const map = L.map("map", {
+        gestureHandling: false, // disables gestures similar to your iframe's `gestureHandling=none`
+      }).setView([16.5050288, 80.6593653], 17);
 
-      // Add grey tile layer (CartoDB Positron)
+      // Greyscale tile layer (CartoDB Positron)
       L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
         {
-          attribution:
-            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
+          attribution: "&copy; OpenStreetMap contributors &copy; CARTO",
           subdomains: "abcd",
           maxZoom: 20,
         }
       ).addTo(map);
 
-      // Marker for the location
-      L.marker([16.5050288, 80.6619402])
+      // Marker
+      L.marker([16.5050288, 80.6593653])
         .addTo(map)
         .bindPopup("Amyra Silver")
         .openPopup();
